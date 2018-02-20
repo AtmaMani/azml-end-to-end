@@ -1,0 +1,284 @@
+Logging experiment preparation in history service.
+Running: ['docker', 'build', '-f', '/tmp/azureml_runs/azml-end-to-end_1519024003197/azureml-setup/Dockerfile', '-t', 'azureml_36b33c6649e4b050cef45fde80d64fe7', '.']
+Sending build context to Docker daemon  360.4kB
+Step 1/14 : FROM microsoft/mmlspark:plus-0.9.9
+ ---> 7d6dc0293c47
+Step 2/14 : USER root
+ ---> Using cache
+ ---> 51a06d2e9d54
+Step 3/14 : RUN mkdir -p $HOME/.cache
+ ---> Using cache
+ ---> 7d71d080f045
+Step 4/14 : WORKDIR /
+ ---> Using cache
+ ---> 3a10ebfec909
+Step 5/14 : COPY azureml-setup/99brokenproxy /etc/apt/apt.conf.d/
+ ---> Using cache
+ ---> edcca8f673ed
+Step 6/14 : RUN if dpkg --compare-versions `conda --version | grep -oE '[^ ]+$'` lt 4.4.0; then conda update conda -c conda-canary; fi
+ ---> Using cache
+ ---> 6934bb2e3ad3
+Step 7/14 : COPY azureml-setup/mutated_conda_dependencies.yml azureml-setup/mutated_conda_dependencies.yml
+ ---> bc09dfe75dbd
+Removing intermediate container 103adaef5f5b
+Step 8/14 : RUN conda env create -f azureml-setup/mutated_conda_dependencies.yml
+ ---> Running in 9ce9ea40d2e2
+Solving environment: ...working... done
+pexpect 4.2.1: ########## | 100% [0m[91m
+jupyter_client 5.1.0: ########## | 100% [0m[91m
+openssl 1.0.2l: ########## | 100% [0m[91m
+pickleshare 0.7.4: ########## | 100% [0m[91m
+scipy 0.19.1: ########## | 100% [0m[91m
+libsodium 1.0.10: ########## | 100% [0m[91m
+pytz 2017.2: ########## | 100% [0m[91m
+tornado 4.5.2: ########## | 100% [0m[91m
+path.py 10.3.1: ########## | 100% [0m[91m
+markupsafe 1.0: ########## | 100% [0m[91m
+mkl 2017.0.3: ########## | 100% [0m[91m
+ptyprocess 0.5.2: ########## | 100% [0m[91m
+nbformat 4.4.0: ########## | 100% [0m[91m
+terminado 0.6: ########## | 100% [0m[91m
+pyzmq 16.0.2: ########## | 100% [0m[91m
+certifi 2016.2.28: ########## | 100% [0m[91m
+ipython_genutils 0.2.0: ########## | 100% [0m[91m
+six 1.10.0: ########## | 100% [0m[91m
+html5lib 0.9999999: ########## | 100% [0m[91m
+jsonschema 2.6.0: ########## | 100% [0m[91m
+ipywidgets 5.2.2: ########## | 100% [0m[91m
+setuptools 36.4.0: ########## | 100% [0m[91m
+zeromq 4.1.5: ########## | 100% [0m[91m
+widgetsnbextension 1.2.6: ########## | 100% [0m[91m
+ipykernel 4.6.1: ########## | 100% [0m[91m
+arcgis 1.3.0: ########## | 100% [0m[91m
+entrypoints 0.2.3: ########## | 100% [0m[91m
+pip 9.0.1: ########## | 100% [0m[91m
+ipython 6.1.0: ########## | 100% [0m[91m
+testpath 0.3.1: ########## | 100% [0m[91m
+jedi 0.10.2: ########## | 100% [0m[91m
+wcwidth 0.1.7: ########## | 100% [0m[91m
+jupyter_core 4.3.0: ########## | 100% [0m[91m
+notebook 5.0.0: ########## | 100% [0m[91m
+scikit-learn 0.19.0: ########## | 100% [0m[91m
+pygments 2.2.0: ########## | 100% [0m[91m
+wheel 0.29.0: ########## | 100% [0m[91m
+prompt_toolkit 1.0.15: ########## | 100% [0m[91m
+bleach 1.5.0: ########## | 100% [0m[91m
+jinja2 2.9.6: ########## | 100% [0m[91m
+decorator 4.1.2: ########## | 100% [0m[91m
+python-dateutil 2.6.1: ########## | 100% [0m[91m
+mistune 0.7.4: ########## | 100% [0m[91m
+pandocfilters 1.4.2: ########## | 100% [0m[91m
+sqlite 3.13.0: ########## | 100% [0m[91m
+libgfortran 3.0.0: ########## | 100% [0m[91m
+traitlets 4.3.2: ########## | 100% [0m[91m
+xz 5.2.3: ########## | 100% 
+numpy 1.13.1: ########## | 100% [0m[91m
+pandas 0.20.3: ########## | 100% [0m[91m
+nbconvert 5.2.1: ########## | 100% [0m[91m
+simplegeneric 0.8.1: ########## | 100% [0m[91m
+readline 6.2: ########## | 100% [0m[91m
+zlib 1.2.11: ########## | 100% [0m[91m
+python 3.5.2: ########## | 100% [0m
+Downloading and Extracting Packages
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... Uninstalling prior versions of arcgis widget
+Installing /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/lib/python3.5/site-packages/arcgis/widgets -> arcgis
+Making directory: /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/share/jupyter/nbextensions/arcgis/
+Copying: /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/lib/python3.5/site-packages/arcgis/widgets/__init__.py -> /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/share/jupyter/nbextensions/arcgis/__init__.py
+Copying: /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/lib/python3.5/site-packages/arcgis/widgets/custom.css -> /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/share/jupyter/nbextensions/arcgis/custom.css
+Copying: /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/lib/python3.5/site-packages/arcgis/widgets/mapview.js -> /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/share/jupyter/nbextensions/arcgis/mapview.js
+Making directory: /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/share/jupyter/nbextensions/arcgis/requirejs
+Copying: /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/lib/python3.5/site-packages/arcgis/widgets/requirejs/text.js -> /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/share/jupyter/nbextensions/arcgis/requirejs/text.js
+Making directory: /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/share/jupyter/nbextensions/arcgis/__pycache__
+Copying: /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/lib/python3.5/site-packages/arcgis/widgets/__pycache__/__init__.cpython-35.pyc -> /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/share/jupyter/nbextensions/arcgis/__pycache__/__init__.cpython-35.pyc
+Making directory: /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/share/jupyter/nbextensions/arcgis/icons
+Copying: /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/lib/python3.5/site-packages/arcgis/widgets/icons/pink.png -> /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/share/jupyter/nbextensions/arcgis/icons/pink.png
+Copying: /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/lib/python3.5/site-packages/arcgis/widgets/icons/marker.png -> /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/share/jupyter/nbextensions/arcgis/icons/marker.png
+- Validating: [32mOK[0m
+
+    To initialize this nbextension in the browser every time the notebook (or other app) loads:
+    
+          jupyter nbextension enable arcgis --py --sys-prefix
+    
+Enabling notebook extension arcgis/mapview...
+      - Validating: [32mOK[0m
+
+done
+Requirement already satisfied: notebook in /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/lib/python3.5/site-packages (from -r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 1))
+Collecting matplotlib (from -r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 2))
+  Downloading matplotlib-2.1.2-cp35-cp35m-manylinux1_x86_64.whl (15.0MB)
+Collecting azure-ml-api-sdk==0.1.0a11 (from -r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 3))
+[91m  Retrying (Retry(total=4, connect=None, read=None, redirect=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='azuremldownloads.azureedge.net', port=443): Read timed out. (read timeout=15)",)': /python-repository/preview/azure-ml-api-sdk/
+[0m[91m  Retrying (Retry(total=3, connect=None, read=None, redirect=None)) after connection broken by 'ConnectTimeoutError(<pip._vendor.requests.packages.urllib3.connection.VerifiedHTTPSConnection object at 0x7f955c1263c8>, 'Connection to azuremldownloads.azureedge.net timed out. (connect timeout=15)')': /python-repository/preview/azure-ml-api-sdk/
+[0m  Downloading azure_ml_api_sdk-0.1.0a11-py2.py3-none-any.whl (80kB)
+Collecting azureml-model-management-sdk==1.0.1b6 (from -r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 4))
+  Downloading azureml_model_management_sdk-1.0.1b6-py2.py3-none-any.whl (128kB)
+Collecting azureml-requirements (from -r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 7))
+  Downloading https://azuremldownloads.azureedge.net/requirements-packages/preview/azureml_requirements-0.1-py3-none-any.whl
+Requirement already satisfied: six>=1.10 in /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/lib/python3.5/site-packages (from matplotlib->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 2))
+Requirement already satisfied: numpy>=1.7.1 in /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/lib/python3.5/site-packages (from matplotlib->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 2))
+Requirement already satisfied: pytz in /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/lib/python3.5/site-packages (from matplotlib->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 2))
+Requirement already satisfied: python-dateutil>=2.1 in /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/lib/python3.5/site-packages (from matplotlib->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 2))
+Collecting cycler>=0.10 (from matplotlib->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 2))
+  Downloading cycler-0.10.0-py2.py3-none-any.whl
+Collecting pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1 (from matplotlib->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 2))
+  Downloading pyparsing-2.2.0-py2.py3-none-any.whl (56kB)
+Collecting liac-arff (from azure-ml-api-sdk==0.1.0a11->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 3))
+  Downloading liac-arff-2.1.1.tar.gz
+Collecting requests>=2.17.3 (from azureml-model-management-sdk==1.0.1b6->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 4))
+  Downloading requests-2.18.4-py2.py3-none-any.whl (88kB)
+Collecting adal>=0.4.5 (from azureml-model-management-sdk==1.0.1b6->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 4))
+  Downloading adal-0.5.0-py2.py3-none-any.whl (50kB)
+Collecting dill>=0.2.7.1 (from azureml-model-management-sdk==1.0.1b6->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 4))
+  Downloading dill-0.2.7.1.tar.gz (64kB)
+Requirement already satisfied: pandas>=0.20.2 in /home/mmlspark/lib/conda/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/lib/python3.5/site-packages (from azureml-model-management-sdk==1.0.1b6->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 4))
+Collecting nativereader (from azureml-requirements->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 7))
+  Downloading https://azuremldownloads.azureedge.net/dataprep-packages/preview/nativereader-6.0.2-cp35-cp35m-linux_x86_64.whl (543kB)
+Collecting azureml.dmsclient (from azureml-requirements->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 7))
+  Downloading https://azuremldownloads.azureedge.net/history-packages/preview/azureml.dmsclient-1.1.0.491405-py3-none-any.whl
+Collecting psutil>=5.2.2 (from azureml-requirements->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 7))
+  Downloading psutil-5.4.3.tar.gz (412kB)
+Collecting azureml.logging (from azureml-requirements->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 7))
+  Downloading https://azuremldownloads.azureedge.net/history-packages/preview/azureml.logging-1.0.81.491405-py3-none-any.whl
+Collecting dprepEngine (from azureml-requirements->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 7))
+  Downloading https://azuremldownloads.azureedge.net/dataprep-packages/preview/dprepEngine-0.1.1712.18263-py3-none-linux_x86_64.whl (70.9MB)
+Collecting azureml.assets (from azureml-requirements->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 7))
+  Downloading https://azuremldownloads.azureedge.net/history-packages/preview/azureml.assets-1.0.1.491405-py3-none-any.whl
+Collecting applicationinsights>=0.11.0 (from azureml-requirements->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 7))
+  Downloading applicationinsights-0.11.1.tar.gz (44kB)
+Collecting azureml-dataprep (from azureml-requirements->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 7))
+  Downloading https://azuremldownloads.azureedge.net/dataprep-packages/preview/azureml.dataprep-0.1.1712.18263-py3-none-any.whl
+Collecting idna<2.7,>=2.5 (from requests>=2.17.3->azureml-model-management-sdk==1.0.1b6->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 4))
+  Downloading idna-2.6-py2.py3-none-any.whl (56kB)
+Collecting certifi>=2017.4.17 (from requests>=2.17.3->azureml-model-management-sdk==1.0.1b6->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 4))
+  Downloading certifi-2018.1.18-py2.py3-none-any.whl (151kB)
+Collecting urllib3<1.23,>=1.21.1 (from requests>=2.17.3->azureml-model-management-sdk==1.0.1b6->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 4))
+  Downloading urllib3-1.22-py2.py3-none-any.whl (132kB)
+Collecting chardet<3.1.0,>=3.0.2 (from requests>=2.17.3->azureml-model-management-sdk==1.0.1b6->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 4))
+  Downloading chardet-3.0.4-py2.py3-none-any.whl (133kB)
+Collecting PyJWT>=1.0.0 (from adal>=0.4.5->azureml-model-management-sdk==1.0.1b6->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 4))
+  Downloading PyJWT-1.5.3-py2.py3-none-any.whl
+Collecting cryptography>=1.1.0 (from adal>=0.4.5->azureml-model-management-sdk==1.0.1b6->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 4))
+  Downloading cryptography-2.1.4-cp35-cp35m-manylinux1_x86_64.whl (2.2MB)
+Collecting msrest>=0.2.0 (from azureml.dmsclient->azureml-requirements->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 7))
+  Downloading msrest-0.4.26-py2.py3-none-any.whl (44kB)
+Collecting requests-futures (from azureml.logging->azureml-requirements->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 7))
+  Downloading requests-futures-0.9.7.tar.gz
+Collecting azure-storage (from azureml.logging->azureml-requirements->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 7))
+  Downloading azure_storage-0.36.0-py2.py3-none-any.whl (190kB)
+Collecting regex==2017.07.28 (from azureml-dataprep->azureml-requirements->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 7))
+  Downloading regex-2017.07.28.tar.gz (607kB)
+Collecting numexpr==2.6.1 (from azureml-dataprep->azureml-requirements->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 7))
+  Downloading numexpr-2.6.1-cp35-cp35m-manylinux1_x86_64.whl (388kB)
+Collecting scipy==0.18.1 (from azureml-dataprep->azureml-requirements->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 7))
+  Downloading scipy-0.18.1-cp35-cp35m-manylinux1_x86_64.whl (42.0MB)
+Collecting PyYAML==3.12 (from azureml-dataprep->azureml-requirements->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 7))
+  Downloading PyYAML-3.12.tar.gz (253kB)
+Collecting xlrd==1.1.0 (from azureml-dataprep->azureml-requirements->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 7))
+  Downloading xlrd-1.1.0-py2.py3-none-any.whl (108kB)
+Collecting pyarrow==0.6.0 (from azureml-dataprep->azureml-requirements->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 7))
+  Downloading pyarrow-0.6.0-cp35-cp35m-manylinux1_x86_64.whl (7.2MB)
+Collecting asn1crypto>=0.21.0 (from cryptography>=1.1.0->adal>=0.4.5->azureml-model-management-sdk==1.0.1b6->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 4))
+  Downloading asn1crypto-0.24.0-py2.py3-none-any.whl (101kB)
+Collecting cffi>=1.7; platform_python_implementation != "PyPy" (from cryptography>=1.1.0->adal>=0.4.5->azureml-model-management-sdk==1.0.1b6->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 4))
+  Downloading cffi-1.11.4-cp35-cp35m-manylinux1_x86_64.whl (419kB)
+Collecting isodate>=0.6.0 (from msrest>=0.2.0->azureml.dmsclient->azureml-requirements->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 7))
+  Downloading isodate-0.6.0-py2.py3-none-any.whl (45kB)
+Collecting requests-oauthlib>=0.5.0 (from msrest>=0.2.0->azureml.dmsclient->azureml-requirements->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 7))
+  Downloading requests_oauthlib-0.8.0-py2.py3-none-any.whl
+Collecting azure-common>=1.1.5 (from azure-storage->azureml.logging->azureml-requirements->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 7))
+  Downloading azure_common-1.1.8-py2.py3-none-any.whl
+Collecting azure-nspkg>=2.0.0 (from azure-storage->azureml.logging->azureml-requirements->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 7))
+  Downloading azure_nspkg-2.0.0-py2.py3-none-any.whl
+Collecting pycparser (from cffi>=1.7; platform_python_implementation != "PyPy"->cryptography>=1.1.0->adal>=0.4.5->azureml-model-management-sdk==1.0.1b6->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 4))
+  Downloading pycparser-2.18.tar.gz (245kB)
+Collecting oauthlib>=0.6.2 (from requests-oauthlib>=0.5.0->msrest>=0.2.0->azureml.dmsclient->azureml-requirements->-r /azureml-setup/condaenv.wpj_a0f7.requirements.txt (line 7))
+  Downloading oauthlib-2.0.6.tar.gz (127kB)
+Building wheels for collected packages: liac-arff, dill, psutil, applicationinsights, requests-futures, regex, PyYAML, pycparser, oauthlib
+  Running setup.py bdist_wheel for liac-arff: started
+  Running setup.py bdist_wheel for liac-arff: finished with status 'done'
+  Stored in directory: /home/mmlspark/.cache/pip/wheels/fa/05/89/ad13dcf092046e2ea86beec50db9ad5ce8a3ba0c4d00489579
+  Running setup.py bdist_wheel for dill: started
+  Running setup.py bdist_wheel for dill: finished with status 'done'
+  Stored in directory: /home/mmlspark/.cache/pip/wheels/e5/88/fe/7e290ce5bb39d531eb9bee5cf254ba1c3e3c7ba3339ce67bee
+  Running setup.py bdist_wheel for psutil: started
+  Running setup.py bdist_wheel for psutil: finished with status 'done'
+  Stored in directory: /home/mmlspark/.cache/pip/wheels/8b/83/e9/f0feab7d059e177e6f3834f42b8a302805fd83dbb16405515a
+  Running setup.py bdist_wheel for applicationinsights: started
+  Running setup.py bdist_wheel for applicationinsights: finished with status 'done'
+  Stored in directory: /home/mmlspark/.cache/pip/wheels/ae/89/28/9628f0268ab85f672e2e8f1a92aee0caed15f7960a728d23e3
+  Running setup.py bdist_wheel for requests-futures: started
+  Running setup.py bdist_wheel for requests-futures: finished with status 'done'
+  Stored in directory: /home/mmlspark/.cache/pip/wheels/4e/17/44/69057a58c11b8680fe642c53666f961cfd4b4e620b8c361ba8
+  Running setup.py bdist_wheel for regex: started
+  Running setup.py bdist_wheel for regex: finished with status 'done'
+  Stored in directory: /home/mmlspark/.cache/pip/wheels/59/6f/80/c0f0aebad616d785f0178de88f9ae957991672856038d75a6c
+  Running setup.py bdist_wheel for PyYAML: started
+  Running setup.py bdist_wheel for PyYAML: finished with status 'done'
+  Stored in directory: /home/mmlspark/.cache/pip/wheels/2c/f7/79/13f3a12cd723892437c0cfbde1230ab4d82947ff7b3839a4fc
+  Running setup.py bdist_wheel for pycparser: started
+  Running setup.py bdist_wheel for pycparser: finished with status 'done'
+  Stored in directory: /home/mmlspark/.cache/pip/wheels/95/14/9a/5e7b9024459d2a6600aaa64e0ba485325aff7a9ac7489db1b6
+  Running setup.py bdist_wheel for oauthlib: started
+  Running setup.py bdist_wheel for oauthlib: finished with status 'done'
+  Stored in directory: /home/mmlspark/.cache/pip/wheels/e5/46/f7/bb2fde81726295a13a71e3c6396d362ab408921c6562d6efc0
+Successfully built liac-arff dill psutil applicationinsights requests-futures regex PyYAML pycparser oauthlib
+Installing collected packages: cycler, pyparsing, matplotlib, liac-arff, azure-ml-api-sdk, idna, certifi, urllib3, chardet, requests, PyJWT, asn1crypto, pycparser, cffi, cryptography, adal, dill, azureml-model-management-sdk, nativereader, isodate, oauthlib, requests-oauthlib, msrest, azureml.dmsclient, psutil, requests-futures, azure-nspkg, azure-common, azure-storage, azureml.logging, dprepEngine, azureml.assets, applicationinsights, regex, numexpr, scipy, PyYAML, xlrd, pyarrow, azureml-dataprep, azureml-requirements
+  Found existing installation: certifi 2016.2.28
+    Uninstalling certifi-2016.2.28:
+      Successfully uninstalled certifi-2016.2.28
+  Found existing installation: scipy 0.19.1
+    Uninstalling scipy-0.19.1:
+      Successfully uninstalled scipy-0.19.1
+Successfully installed PyJWT-1.5.3 PyYAML-3.12 adal-0.5.0 applicationinsights-0.11.1 asn1crypto-0.24.0 azure-common-1.1.8 azure-ml-api-sdk-0.1.0a11 azure-nspkg-2.0.0 azure-storage-0.36.0 azureml-dataprep azureml-model-management-sdk-1.0.1b6 azureml-requirements-0.1 azureml.assets-1.0.1.491405 azureml.dmsclient-1.1.0.491405 azureml.logging-1.0.81.491405 certifi-2018.1.18 cffi-1.11.4 chardet-3.0.4 cryptography-2.1.4 cycler-0.10.0 dill-0.2.7.1 dprepEngine-0.1.1712.18263 idna-2.6 isodate-0.6.0 liac-arff-2.1.1 matplotlib-2.1.2 msrest-0.4.26 nativereader-6.0.2 numexpr-2.6.1 oauthlib-2.0.6 psutil-5.4.3 pyarrow-0.6.0 pycparser-2.18 pyparsing-2.2.0 regex-2017.7.28 requests-2.18.4 requests-futures-0.9.7 requests-oauthlib-0.8.0 scipy-0.18.1 urllib3-1.22 xlrd-1.1.0
+[91m
+[0m#
+# To activate this environment, use:
+# > source activate azureml_3b44a2019b8089ae469d0910f15d4ee4
+#
+# To deactivate an active environment, use:
+# > source deactivate
+#
+
+ ---> c403a77ab98e
+Removing intermediate container 9ce9ea40d2e2
+Step 9/14 : ENV PATH $CONDA_HOME/envs/azureml_3b44a2019b8089ae469d0910f15d4ee4/bin:$PATH
+ ---> Running in 37a05a5a3715
+ ---> 658a9c5616a0
+Removing intermediate container 37a05a5a3715
+Step 10/14 : COPY azureml-setup/spark_cache.py .
+ ---> 525e69601b18
+Removing intermediate container ed466936f0e4
+Step 11/14 : RUN $SPARK_HOME/bin/spark-submit "--repositories" "https://mmlspark.azureedge.net/maven,https://azuremldownloads.blob.core.windows.net/repo5qh91kdjs6" "--packages" "com.microsoft.ml.spark:mmlspark_2.11:0.7.91,com.microsoft.sqlserver:mssql-jdbc:6.2.1.jre8,com.microsoft:dprep_2.11:0.15" "--conf" "spark.app.name=Classifying Iris" "--conf" "spark.yarn.maxAppAttempts=1" "--driver-java-options" "-Dlog4j.configuration=file:./azureml-setup/log4j.properties" "--conf" "spark.eventLog.enabled=true" "--conf" "spark.eventLog.dir=./azureml-logs" spark_cache.py
+ ---> Running in 0e729cfbe7c5
+[91mhttps://mmlspark.azureedge.net/maven added as a remote repository with the name: repo-1
+[0m[91mhttps://azuremldownloads.blob.core.windows.net/repo5qh91kdjs6 added as a remote repository with the name: repo-2
+[0m[91mIvy Default Cache set to: /root/.ivy2/cache
+[0m[91mThe jars for the packages stored in: /root/.ivy2/jars
+[0m[91m:: loading settings :: url = jar:file:/home/mmlspark/lib/spark/jars/ivy-2.4.0.jar!/org/apache/ivy/core/settings/ivysettings.xml
+[0m[91mcom.microsoft.ml.spark#mmlspark_2.11 added as a dependency
+com.microsoft.sqlserver#mssql-jdbc added as a dependency
+[0m[91mcom.microsoft#dprep_2.11 added as a dependency
+[0m[91m:: resolving dependencies :: org.apache.spark#spark-submit-parent;1.0
+[0m[91m	confs: [default]
+[0m[91m	found com.microsoft.ml.spark#mmlspark_2.11;0.7.91 in repo-1
+[0m[91m	found io.spray#spray-json_2.11;1.3.2 in central
+[0m[91m	found com.microsoft.cntk#cntk;2.1 in central[0m[91m
+[0m[91m	found org.openpnp#opencv;3.2.0-1 in central
+[0m[91m	found com.microsoft.sqlserver#mssql-jdbc;6.2.1.jre8 in central
+[0m[91m	found com.microsoft#dprep_2.11;0.15 in repo-2
+[0m[91m	found com.microsoft.programSynthesis#tText;4.1.0-preview2017121402 in repo-2
+[0m[91m	found com.microsoft.programSynthesis#dsl;4.1.0-preview2017121402 in repo-2
+[0m[91m	found com.fasterxml.jackson.core#jackson-core;2.9.2 in central
+[0m[91m	found com.fasterxml.jackson.core#jackson-databind;2.9.2 in central
+[0m[91m	found com.fasterxml.jackson.core#jackson-annotations;2.9.0 in central
+[0m[91mdownloading https://mmlspark.azureedge.net/maven/com/microsoft/ml/spark/mmlspark_2.11/0.7.91/mmlspark_2.11-0.7.91.jar ...
+[0m[91m	[SUCCESSFUL ] com.microsoft.ml.spark#mmlspark_2.11;0.7.91!mmlspark_2.11.jar (3301ms)
+[0m[91mdownloading https://repo1.maven.org/maven2/com/microsoft/sqlserver/mssql-jdbc/6.2.1.jre8/mssql-jdbc-6.2.1.jre8.jar ...
+[0m[91m	[SUCCESSFUL ] com.microsoft.sqlserver#mssql-jdbc;6.2.1.jre8!mssql-jdbc.jar (1114ms)
+[0m[91mdownloading https://azuremldownloads.blob.core.windows.net/repo5qh91kdjs6/com/microsoft/dprep_2.11/0.15/dprep_2.11-0.15.jar ...
+[0m[91m	[SUCCESSFUL ] com.microsoft#dprep_2.11;0.15!dprep_2.11.jar (2103ms)
+[0m[91mdownloading https://repo1.maven.org/maven2/io/spray/spray-json_2.11/1.3.2/spray-json_2.11-1.3.2.jar ...
+[0m[91m	[SUCCESSFUL ] io.spray#spray-json_2.11;1.3.2!spray-json_2.11.jar(bundle) (779ms)
+[0m[91mdownloading https://repo1.maven.org/maven2/com/microsoft/cntk/cntk/2.1/cntk-2.1.jar ...
