@@ -31,9 +31,13 @@ def init():
     inputs_dc = ModelDataCollector("model.pkl", identifier="inputs")
     prediction_dc = ModelDataCollector("model.pkl", identifier="prediction")
 
-def run(input_df):
+def run(input_str, input_df):
     import json
     
+    # perform ArcGIS Search - proof of concept
+    webmap_count = search_fire(input_str)
+    str_webmap_count = "Number of matching web maps: " + str(webmap_count)
+
     # append 40 random features just like the training script does it.
     import numpy as np
     n = 40
@@ -50,13 +54,15 @@ def run(input_df):
     # return json.dumps(pred.tolist())
     
     # return just the first prediction
-    return json.dumps(str(pred[0]))
+    return_str = str_webmap_count + str(pred[0])
+    return json.dumps(return_str)
 
 def main():
   from azureml.api.schema.dataTypes import DataTypes
   from azureml.api.schema.sampleDefinition import SampleDefinition
   from azureml.api.realtime.services import generate_schema
   import pandas
+  from arcgis_search import search_fire
   
   df = pandas.DataFrame(data=[[3.0, 3.6, 1.3, 0.25]], columns=['sepal length', 'sepal width','petal length','petal width'])
 
@@ -65,10 +71,12 @@ def main():
 
   # Test the output of the functions
   init()
-  input1 = pandas.DataFrame([[3.0, 3.6, 1.3, 0.25]])
-  print("Result: " + run(input1))
+  input1 = 'forest'
+  input2 = pandas.DataFrame([[3.7, 2.6, 1.3, 0.25]])
+    print("Result: " + run(input1, input2))
   
-  inputs = {"input_df": SampleDefinition(DataTypes.PANDAS, df)}
+  inputs = {'input_str':SampleDefinition(DataTypes.STRING, input1),
+      "input_df": SampleDefinition(DataTypes.PANDAS, df)}
   
   #Genereate the schema
   generate_schema(run_func=run, inputs=inputs, filepath='./outputs/service_schema.json')
